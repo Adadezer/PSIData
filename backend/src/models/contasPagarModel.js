@@ -5,7 +5,7 @@ class ContasPagarModel {
     this.connection = connection;
   }
 
-  async getAll() {
+  async getAllContasPagar() {
     const result = await this.connection.execute('SELECT * FROM psIdata.contaspagar');
     const [rows] = result;
     return rows;

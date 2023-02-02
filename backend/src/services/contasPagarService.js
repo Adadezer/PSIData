@@ -6,8 +6,8 @@ class ContasPagarService {
     this.model = new ContasPagarModel(connection);
   }
 
-  async getAll() {
-    const getContasPagar = await this.model.getAll();
+  async getAllContasPagar() {
+    const getContasPagar = await this.model.getAllContasPagar();
     return getContasPagar;
   }
 }
