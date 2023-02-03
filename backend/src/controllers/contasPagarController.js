@@ -6,7 +6,13 @@ class ContasPagarController {
   async getAllContasPagar(_req, res) {
     const getContasPagar = await this.contasPagarService.getAllContasPagar();
 
-    res.status(200).json(getContasPagar);
+    return res.status(200).json(getContasPagar);
+  }
+
+  async getAllColumnsContasPagar(_req, res) {
+    const getColumns = await this.contasPagarService.getAllColumnsContasPagar();
+
+    return res.status(200).json(getColumns);
   }
 }
 

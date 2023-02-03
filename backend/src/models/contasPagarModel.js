@@ -10,6 +10,15 @@ class ContasPagarModel {
     const [rows] = result;
     return rows;
   }
+
+  async getAllColumnsContasPagar() {
+    const result = await this.connection.execute(
+      `SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
+      WHERE TABLE_NAME = 'contaspagar'`,
+    );
+    const [columnName] = result;
+    return columnName;
+  }
 }
 
 module.exports = ContasPagarModel;
