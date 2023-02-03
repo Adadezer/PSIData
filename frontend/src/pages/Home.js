@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
-import IDataContext from '../context/IDataContext';
+import React from 'react';
+import Tabela from '../components/Tabela';
 
 function Home() {
-  const { testeProvider } = useContext(IDataContext);
   return (
     <>
       <h1>Home</h1>
-      <h2>{testeProvider}</h2>
+      <Tabela />
     </>
   );
 }
