@@ -10,6 +10,11 @@ class ContasPagarService {
     const getContasPagar = await this.model.getAllContasPagar();
     return getContasPagar;
   }
+
+  async getAllColumnsContasPagar() {
+    const getColumns = await this.model.getAllColumnsContasPagar();
+    return getColumns;
+  }
 }
 
 module.exports = ContasPagarService;

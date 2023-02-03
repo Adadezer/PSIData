@@ -2,12 +2,15 @@ import { useState, useMemo } from 'react';
 import IDataContext from './IDataContext';
 
 function IDataProvider({ children }) {
-  const [testeProvider, setTesteProvider] = useState('provider funcionando');
+  const [nameColumnsContasPagar, setNameColumnsContasPagar] = useState([]);
+  const [dataContasPagar, setDataContasPagar] = useState([]);
 
   const myContext = useMemo(() => ({
-    testeProvider,
-    setTesteProvider,
-  }), [testeProvider]);
+    nameColumnsContasPagar,
+    setNameColumnsContasPagar,
+    dataContasPagar,
+    setDataContasPagar,
+  }), [nameColumnsContasPagar, dataContasPagar]);
 
   return (
     <IDataContext.Provider value={myContext}>
