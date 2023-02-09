@@ -97,7 +97,7 @@ CREATE TABLE `Extrato` (
     `identificacao` VARCHAR(191) NOT NULL,
     `check` VARCHAR(191) NOT NULL,
     `tipo` VARCHAR(191) NOT NULL,
-    `valor` DECIMAL(10, 2) NOT NULL,
+    `valor` DECIMAL(10, 2) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
