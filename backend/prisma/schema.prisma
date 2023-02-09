@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model contaspagar {
+  nro_lanc_cop                  Int       @id @default(autoincrement())
+  nro_pro                       Int?
+  ano_pro                       Int?
+  cod_him                       String?   @db.VarChar(5)
+  cod_classconta                Int?
+  cod_banco                     String?   @db.Char(3)
+  cod_emp                       Int?
+  dt_lanc_cop                   DateTime? @db.DateTime(0)
+  dt_vcto_cop                   DateTime? @db.DateTime(0)
+  comp_him_cop                  String?   @db.VarChar(255)
+  vlr_cop                       Decimal?  @db.Decimal(10, 2)
+  credor_cop                    Int       @default(0)
+  dt_pgto_cop                   DateTime? @db.DateTime(0)
+  dt_receb_cop                  DateTime? @db.DateTime(0)
+  dt_prog_cop                   DateTime? @db.DateTime(0)
+  vlr_pgto_cop                  Decimal   @default(0.00) @db.Decimal(10, 2)
+  vlr_acre_desc_cop             Decimal   @default(0.00) @db.Decimal(10, 2)
+  VlrME_Acre_Desc_Cop           Decimal   @default(0.00) @db.Decimal(10, 2)
+  moeda_vlrme_cop               Int?
+  Moeda_VlrME_Pgto_Cop          Int?
+  vlrme_cop                     Decimal?  @db.Decimal(10, 2)
+  vlrme_pgto_cop                Decimal?  @db.Decimal(10, 2)
+  paridade_vlrme_cop            Decimal?  @db.Decimal(12, 7)
+  paridade_vlrme_pgto_cop       Decimal?  @db.Decimal(12, 7)
+  coeficiente_conversao_cop     Decimal?  @db.Decimal(12, 7)
+  variacaocambial_cop           Decimal?  @db.Decimal(12, 2)
+  nro_cheque_cop                String?   @db.VarChar(20)
+  nro_lanc_fif                  Int?
+  obs_cop                       String?   @db.VarChar(255)
+  unidadenegocioid              Int?
+  inssretidovalor               Decimal   @default(0.00) @db.Decimal(10, 2)
+  irrfretidovalor               Decimal   @default(0.00) @db.Decimal(10, 2)
+  pisretidovalor                Decimal   @default(0.00) @db.Decimal(10, 2)
+  cofinsretidovalor             Decimal   @default(0.00) @db.Decimal(10, 2)
+  csllretidovalor               Decimal   @default(0.00) @db.Decimal(10, 2)
+  ISSRetidoValor                Decimal   @default(0.00) @db.Decimal(10, 2)
+  lote                          String?   @db.VarChar(20)
+  autorizado                    Boolean   @default(false)
+  notafiscalid                  Int?
+  faturaservicoid               Int?
+  info_cop                      String?   @db.VarChar(128)
+  cobrancabancaria              Decimal?  @db.Decimal(10, 2)
+  ReciboNumero                  Int?
+  StatementFaturaServicoId      Int?
+  NotaFiscalItemId              Int?
+  CodigoContabil                String?   @db.VarChar(16)
+  IOFRetidoValor                Decimal   @default(0.00) @db.Decimal(10, 2)
+  ContasReceberId               Int?
+  LiquidacaoFormaPagamento      Int?      @db.SmallInt
+  ReciboId                      Int?
+  ProgramacaoCambialBase        String?   @db.Char(1)
+  ProgramacaoCambialDias        Int?
+  ProgramacaoCambialObs         String?   @db.VarChar(255)
+  ProgramacaoCambialPercParcela Decimal?  @db.Decimal(12, 5)
+  EstaLancadoBanco              Boolean   @default(false)
+  OrigemId                      String?   @db.VarChar(16)
+  CCambioNumero                 String?   @db.VarChar(32)
+  RefDocTipo                    String?   @db.VarChar(32)
+  RefDocNumero                  String?   @db.VarChar(32)
+  RefDocItemLC                  String?   @db.VarChar(32)
+  InclusaoUsuarioId             Int?
+
+  @@index([cod_banco], map: "AK_contaspagar_cod_banco")
+  @@index([cod_classconta], map: "AK_contaspagar_cod_classconta")
+  @@index([cod_emp], map: "AK_contaspagar_cod_emp")
+  @@index([cod_him], map: "AK_contaspagar_cod_him")
+  @@index([comp_him_cop], map: "AK_contaspagar_comp_him_cop")
+  @@index([ContasReceberId], map: "AK_contaspagar_contasreceberid")
+  @@index([credor_cop], map: "AK_contaspagar_credor_cop")
+  @@index([dt_lanc_cop], map: "AK_contaspagar_dt_lanc_cop")
+  @@index([dt_pgto_cop], map: "AK_contaspagar_dt_pgto_cop")
+  @@index([dt_prog_cop], map: "AK_contaspagar_dt_prog_cop")
+  @@index([dt_vcto_cop], map: "AK_contaspagar_dt_vcto_cop")
+  @@index([faturaservicoid], map: "AK_contaspagar_faturaservicoid")
+  @@index([InclusaoUsuarioId], map: "AK_contaspagar_inclusaousuarioid")
+  @@index([info_cop], map: "AK_contaspagar_info_cop")
+  @@index([lote], map: "AK_contaspagar_lote")
+  @@index([moeda_vlrme_cop], map: "AK_contaspagar_moeda_vlrme_cop")
+  @@index([Moeda_VlrME_Pgto_Cop], map: "AK_contaspagar_moeda_vlrme_pgto_cop")
+  @@index([notafiscalid], map: "AK_contaspagar_notafiscalid")
+  @@index([NotaFiscalItemId], map: "AK_contaspagar_notafiscalitemid")
+  @@index([nro_lanc_fif], map: "AK_contaspagar_nro_lanc_fif")
+  @@index([nro_pro, ano_pro], map: "AK_contaspagar_nro_pro_ano_pro")
+  @@index([ReciboId], map: "AK_contaspagar_reciboid")
+  @@index([StatementFaturaServicoId], map: "AK_contaspagar_statementfaturaservicoid")
+  @@index([unidadenegocioid], map: "AK_contaspagar_unidadenegocioid")
+}
+
+model Extrato {
+  id Int @id @default(autoincrement())
+  data String
+  descricao String
+  identificacao String
+  check String
+  tipo String
+  valor Decimal?  @db.Decimal(10, 2)
+}
