@@ -25,7 +25,7 @@ const uploadExtratoService = async (buffer) => {
       identificacao: extratoLineSeparator[2],
       check: extratoLineSeparator[3],
       tipo: extratoLineSeparator[4],
-      valor: parseFloat(extratoLineSeparator[5]),
+      valor: parseFloat(extratoLineSeparator[5] * -1),
     });
   }
 
