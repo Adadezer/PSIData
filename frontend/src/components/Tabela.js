@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
-import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,12 +9,23 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 import IDataContext from '../context/IDataContext';
 
-export default function Tabela() {
+export default function StickyHeadTable() {
   const { nameColumnsContasPagar, setNameColumnsContasPagar } = useContext(IDataContext);
 
   const { dataContasPagar, setDataContasPagar } = useContext(IDataContext);
+
+  const coluna = nameColumnsContasPagar.map((name) => (
+    {
+      id: name.COLUMN_NAME,
+      label: name.COLUMN_NAME,
+      maxWidth: 170,
+      align: 'right',
+      format: (value) => value.toLocaleString('pt-BR'),
+    }
+  ));
 
   const getColumnsContasPagar = async () => {
     try {
@@ -39,16 +49,6 @@ export default function Tabela() {
     getColumnsContasPagar();
     getContasPagar();
   }, []);
-
-  const colunas = nameColumnsContasPagar.map((name) => (
-    {
-      id: name.COLUMN_NAME,
-      label: name.COLUMN_NAME,
-      maxWidth: 170,
-      align: 'right',
-      format: (value) => value.toLocaleString('pt-BR'),
-    }
-  ));
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -87,8 +87,8 @@ export default function Tabela() {
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
-            <TableRow>
-              {colunas.map((column) => (
+            <StyledTableRow>
+              {coluna.map((column) => (
                 <StyledTableCell
                   key={column.id}
                   align={column.align}
@@ -97,7 +97,7 @@ export default function Tabela() {
                   {column.label}
                 </StyledTableCell>
               ))}
-            </TableRow>
+            </StyledTableRow>
           </TableHead>
           <TableBody>
             {dataContasPagar
@@ -105,7 +105,7 @@ export default function Tabela() {
               .map((row) => {
                 return (
                   <StyledTableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {colunas.map((column) => {
+                    {coluna.map((column) => {
                       const value = row[column.id];
                       return (
                         <StyledTableCell key={column.id} align={column.align}>
