@@ -1,19 +1,19 @@
-const ContasPagarService = require('../services/contasPagarService');
+const LotesContasPagarService = require('../services/contasPagarService');
 
-class ContasPagarController {
-  contasPagarService = new ContasPagarService();
+class LotesContasPagarController {
+  LotesContasPagarService = new LotesContasPagarService();
 
-  async getAllContasPagar(_req, res) {
-    const getContasPagar = await this.contasPagarService.getAllContasPagar();
+  async getAllLotesContasPagar(_req, res) {
+    const getLotes = await this.LotesContasPagarService.getAllLotesContasPagar();
 
-    return res.status(200).json(getContasPagar);
+    return res.status(200).json(getLotes);
   }
 
-  async getAllColumnsContasPagar(_req, res) {
-    const getColumns = await this.contasPagarService.getAllColumnsContasPagar();
+  async getAllColumnsLotesContasPagar(_req, res) {
+    const getColumns = await this.LotesContasPagarService.getAllColumnsLotesContasPagar();
 
     return res.status(200).json(getColumns);
   }
 }
 
-module.exports = ContasPagarController;
+module.exports = LotesContasPagarController;

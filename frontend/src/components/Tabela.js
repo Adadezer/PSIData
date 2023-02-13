@@ -13,11 +13,11 @@ import Paper from '@mui/material/Paper';
 import IDataContext from '../context/IDataContext';
 
 export default function StickyHeadTable() {
-  const { nameColumnsContasPagar, setNameColumnsContasPagar } = useContext(IDataContext);
+  const { nameColumnsLotesContasPagar, setNameColumnsLotesContasPagar } = useContext(IDataContext);
 
-  const { dataContasPagar, setDataContasPagar } = useContext(IDataContext);
+  const { dataLotesContasPagar, setDataLotesContasPagar } = useContext(IDataContext);
 
-  const coluna = nameColumnsContasPagar.map((name) => (
+  const coluna = nameColumnsLotesContasPagar.map((name) => (
     {
       id: name.COLUMN_NAME,
       label: name.COLUMN_NAME,
@@ -27,10 +27,10 @@ export default function StickyHeadTable() {
     }
   ));
 
-  const getColumnsContasPagar = async () => {
+  const getColumnsLotesContasPagar = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/columnsContasPagar');
-      setNameColumnsContasPagar(result.data);
+      const result = await axios.get('http://localhost:3001/columnsLotesContasPagar');
+      setNameColumnsLotesContasPagar(result.data);
     } catch (error) {
       console.error(error);
     }
@@ -38,15 +38,15 @@ export default function StickyHeadTable() {
 
   const getContasPagar = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/contasPagar');
-      setDataContasPagar(result.data);
+      const result = await axios.get('http://localhost:3001/lotesContasPagar');
+      setDataLotesContasPagar(result.data);
     } catch (error) {
       console.error(error);
     }
   };
   
   useEffect(() => {
-    getColumnsContasPagar();
+    getColumnsLotesContasPagar();
     getContasPagar();
   }, []);
 
@@ -100,7 +100,7 @@ export default function StickyHeadTable() {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {dataContasPagar
+            {dataLotesContasPagar
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -124,7 +124,7 @@ export default function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={dataContasPagar.length}
+        count={dataLotesContasPagar.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
