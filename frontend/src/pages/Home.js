@@ -4,7 +4,8 @@ import Tabela from '../components/Tabela';
 function Home() {
   return (
     <>
-      <h1>Home</h1>
+      <h1>Comparação Mês: Dezembro</h1>
+      <h2>Registros com lotes</h2>
       <Tabela />
     </>
   );
