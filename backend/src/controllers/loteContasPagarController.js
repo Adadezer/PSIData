@@ -1,4 +1,4 @@
-const LotesContasPagarService = require('../services/contasPagarService');
+const LotesContasPagarService = require('../services/loteContasPagarService');
 
 class LotesContasPagarController {
   LotesContasPagarService = new LotesContasPagarService();
