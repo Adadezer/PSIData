@@ -1,5 +1,5 @@
 const connection = require('../models/connection');
-const LotesContasPagarModel = require('../models/contasPagarModel');
+const LotesContasPagarModel = require('../models/loteContasPagarModel');
 
 class LotesContasPagarService {
   constructor() {

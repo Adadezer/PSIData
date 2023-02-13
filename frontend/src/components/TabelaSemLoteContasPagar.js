@@ -12,42 +12,42 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IDataContext from '../context/IDataContext';
 
-export default function StickyHeadTable() {
-  const { nameColumnsLotesContasPagar, setNameColumnsLotesContasPagar } = useContext(IDataContext);
+export default function TabelaSemLoteContasPagar() {
+  const { nameColumnsSemLoteContasPagar, setNameColumnsSemLoteContasPagar } = useContext(IDataContext);
 
-  const { dataLotesContasPagar, setDataLotesContasPagar } = useContext(IDataContext);
+  const { dataSemLoteContasPagar, setDataSemLoteContasPagar } = useContext(IDataContext);
 
-  const coluna = nameColumnsLotesContasPagar.map((name) => (
+  const coluna = nameColumnsSemLoteContasPagar.map((name) => (
     {
       id: name.COLUMN_NAME,
       label: name.COLUMN_NAME,
       maxWidth: 170,
-      align: 'right',
+      align: 'center',
       format: (value) => value.toLocaleString('pt-BR'),
     }
   ));
 
-  const getColumnsLotesContasPagar = async () => {
+  const getColumnsSemLoteContasPagar = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/columnsLotesContasPagar');
-      setNameColumnsLotesContasPagar(result.data);
+      const result = await axios.get('http://localhost:3001/columnsSemLoteContasPagar');
+      setNameColumnsSemLoteContasPagar(result.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const getContasPagar = async () => {
+  const getSemLoteContasPagar = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/lotesContasPagar');
-      setDataLotesContasPagar(result.data);
+      const result = await axios.get('http://localhost:3001/semLoteContasPagar');
+      setDataSemLoteContasPagar(result.data);
     } catch (error) {
       console.error(error);
     }
   };
   
   useEffect(() => {
-    getColumnsLotesContasPagar();
-    getContasPagar();
+    getColumnsSemLoteContasPagar();
+    getSemLoteContasPagar();
   }, []);
 
   const [page, setPage] = React.useState(0);
@@ -100,7 +100,7 @@ export default function StickyHeadTable() {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {dataLotesContasPagar
+            {dataSemLoteContasPagar
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -124,7 +124,7 @@ export default function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={dataLotesContasPagar.length}
+        count={dataSemLoteContasPagar.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
