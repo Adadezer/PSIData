@@ -1,11 +1,11 @@
 const connection = require('./connection');
 
-class ContasPagarModel {
+class LotesContasPagarModel {
   constructor() {
     this.connection = connection;
   }
 
-  async getAllContasPagar() {
+  async getAllLotesContasPagar() {
     const result = await this.connection.execute(`
       SELECT lotesContasPagar.data, lotesContasPagar.lote, lotesContasPagar.codigo_do_banco, lotesContasPagar.valor
       FROM psIdata.lotesContasPagar
@@ -17,7 +17,7 @@ class ContasPagarModel {
     return rows;
   }
 
-  async getAllColumnsContasPagar() {
+  async getAllColumnsLotesContasPagar() {
     const result = await this.connection.execute(`
       SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
       WHERE TABLE_NAME = 'lotesContasPagar'
@@ -27,4 +27,4 @@ class ContasPagarModel {
   }
 }
 
-module.exports = ContasPagarModel;
+module.exports = LotesContasPagarModel;

@@ -1,20 +1,20 @@
 const connection = require('../models/connection');
-const ContasPagarModel = require('../models/contasPagarModel');
+const LotesContasPagarModel = require('../models/contasPagarModel');
 
-class ContasPagarService {
+class LotesContasPagarService {
   constructor() {
-    this.model = new ContasPagarModel(connection);
+    this.model = new LotesContasPagarModel(connection);
   }
 
-  async getAllContasPagar() {
-    const getContasPagar = await this.model.getAllContasPagar();
-    return getContasPagar;
+  async getAllLotesContasPagar() {
+    const getLotes = await this.model.getAllLotesContasPagar();
+    return getLotes;
   }
 
-  async getAllColumnsContasPagar() {
-    const getColumns = await this.model.getAllColumnsContasPagar();
+  async getAllColumnsLotesContasPagar() {
+    const getColumns = await this.model.getAllColumnsLotesContasPagar();
     return getColumns;
   }
 }
 
-module.exports = ContasPagarService;
+module.exports = LotesContasPagarService;
