@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,10 +22,35 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
-  color: #61dafb;
+  color: #0099ff;
+}
+
+body {
+  background-color: rgb(236, 236, 236);
+}
+
+h1, h2 {
+  color: #00478a;
+}
+
+input[type=file]::file-selector-button {
+  background-color: #ffffff00;
+  color: #0166c5;
+  border: 1px solid;
+  border-radius: 5px;
+  text-transform: uppercase;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: #cacaca1f;
+  cursor: pointer;
+  /* border: 0px; */
+  /* border-right: 1px solid #e5e5e5; */
 }
 
 @keyframes App-logo-spin {

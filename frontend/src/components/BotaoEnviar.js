@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react';
 import Axios from 'axios';
 import LoadingButton from '@mui/lab/LoadingButton';
 import IDataContext from '../context/IDataContext';
+import '../App.css';
 
-function ButtonSend() {
+function BotaoEnviar() {
   const [file, setFile] = useState();
   const { setShouldRefresh } = useContext(IDataContext);
   const [loading, setLoading] = useState(false);
@@ -26,11 +27,11 @@ function ButtonSend() {
     <>
       <form action="#">
         <div className="flex">
-          { /* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <input
             type="file"
             id="file"
-            // accept=".jpg"
+            className="input_container"
+            accept="application/vnd.ms-excel, .xlsx, .xls, .csv"
             onChange={(event) => {
               const file = event.target.files[0];
               setFile(file);
@@ -38,12 +39,11 @@ function ButtonSend() {
           />
         </div>
       </form>
-      {/* <button onClick={send}>Send</button> */}
       <LoadingButton loading={loading} variant="outlined" onClick={send}>
-        Send
+        Enviar
       </LoadingButton>
     </>
   );
 }
 
-export default ButtonSend;
+export default BotaoEnviar;

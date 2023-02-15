@@ -1,8 +1,8 @@
 import React from 'react';
 import TabelaLotesContasPagar from '../components/TabelaLotesContasPagar';
 import TabelaSemLoteContasPagar from '../components/TabelaSemLoteContasPagar';
-import ButtonSend from '../components/ButtonSend';
-import BotaoRafael from '../components/botaoRafael';
+import ButtonSend from '../components/BotaoEnviar';
+import '../App.css';
 
 function Home() {
   return (
@@ -10,8 +10,6 @@ function Home() {
       <h1>Comparação Mês: Dezembro</h1>
 
       <ButtonSend />
-
-      <BotaoRafael />
 
       <h2>Registros com lotes</h2>
       <TabelaLotesContasPagar />
