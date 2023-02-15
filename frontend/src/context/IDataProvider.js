@@ -6,6 +6,7 @@ function IDataProvider({ children }) {
   const [dataLotesContasPagar, setDataLotesContasPagar] = useState([]);
   const [nameColumnsSemLoteContasPagar, setNameColumnsSemLoteContasPagar] = useState([]);
   const [dataSemLoteContasPagar, setDataSemLoteContasPagar] = useState([]);
+  const [shouldRefresh, setShouldRefresh] = useState(false);
 
   const myContext = useMemo(() => ({
     nameColumnsLotesContasPagar,
@@ -16,7 +17,9 @@ function IDataProvider({ children }) {
     setNameColumnsSemLoteContasPagar,
     dataSemLoteContasPagar,
     setDataSemLoteContasPagar,
-  }), [nameColumnsLotesContasPagar, dataLotesContasPagar, nameColumnsSemLoteContasPagar, dataSemLoteContasPagar]);
+    shouldRefresh,
+    setShouldRefresh,
+  }), [nameColumnsLotesContasPagar, dataLotesContasPagar, nameColumnsSemLoteContasPagar, dataSemLoteContasPagar, shouldRefresh]);
 
   return (
     <IDataContext.Provider value={myContext}>
