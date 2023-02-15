@@ -7,7 +7,9 @@ import '../App.css';
 function Home() {
   return (
     <>
-      <h1>Comparação Mês: Dezembro</h1>
+      <h1>Mês: Dezembro</h1>
+
+      <h3>Envie o extrato válido (.csv) para a comparação</h3>
 
       <ButtonSend />
 
