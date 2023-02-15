@@ -13,9 +13,14 @@ import Paper from '@mui/material/Paper';
 import IDataContext from '../context/IDataContext';
 
 export default function TabelaLotesContasPagar() {
-  const { nameColumnsLotesContasPagar, setNameColumnsLotesContasPagar } = useContext(IDataContext);
-
-  const { dataLotesContasPagar, setDataLotesContasPagar } = useContext(IDataContext);
+  const {
+    nameColumnsLotesContasPagar,
+    setNameColumnsLotesContasPagar,
+    dataLotesContasPagar,
+    setDataLotesContasPagar,
+    shouldRefresh,
+    setShouldRefresh,
+  } = useContext(IDataContext);
 
   const coluna = nameColumnsLotesContasPagar.map((name) => (
     {
@@ -49,6 +54,14 @@ export default function TabelaLotesContasPagar() {
     getColumnsLotesContasPagar();
     getContasPagar();
   }, []);
+
+  useEffect(() => {
+    if (shouldRefresh) {
+      getColumnsLotesContasPagar();
+      getContasPagar();
+      setShouldRefresh(false);
+    }
+  }, [shouldRefresh]);
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
