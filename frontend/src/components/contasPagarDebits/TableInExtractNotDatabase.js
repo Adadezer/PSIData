@@ -10,19 +10,19 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import IDataContext from '../context/IDataContext';
+import IDataContext from '../../context/IDataContext';
 
-export default function TableInDatabaseNotExtract() {
+export default function TableInExtractNotDatabase() {
   const {
-    nameColumnsInDatabaseNotExtract,
-    setNameColumnsInDatabaseNotExtract,
-    dataInDatabaseNotExtract,
-    setDataInDatabaseNotExtract,
+    nameColumnsInExtractNotDatabase,
+    setNameColumnsInExtractNotDatabase,
+    dataInExtractNotDatabase,
+    setDataInExtractNotDatabase,
     shouldRefresh,
     setShouldRefresh,
   } = useContext(IDataContext);
 
-  const coluna = nameColumnsInDatabaseNotExtract.map((name) => (
+  const coluna = nameColumnsInExtractNotDatabase.map((name) => (
     {
       id: name.COLUMN_NAME,
       label: name.COLUMN_NAME,
@@ -32,19 +32,19 @@ export default function TableInDatabaseNotExtract() {
     }
   ));
 
-  const getColumnsInDatabaseNotExtract = async () => {
+  const getColumnsInExtractNotDatabase = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/columnsInDatabaseNotExtract');
-      setNameColumnsInDatabaseNotExtract(result.data);
+      const result = await axios.get('http://localhost:3001/columnsInExtractNotDatabase');
+      setNameColumnsInExtractNotDatabase(result.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const getInDatabaseNotExtract = async () => {
+  const getInExtractNotDatabase = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/inDatabaseNotExtract');
-      setDataInDatabaseNotExtract(result.data);
+      const result = await axios.get('http://localhost:3001/inExtractNotDatabase');
+      setDataInExtractNotDatabase(result.data);
     } catch (error) {
       console.error(error);
     }
@@ -52,8 +52,8 @@ export default function TableInDatabaseNotExtract() {
 
   useEffect(() => {
     if (shouldRefresh) {
-      getColumnsInDatabaseNotExtract();
-      getInDatabaseNotExtract();
+      getColumnsInExtractNotDatabase();
+      getInExtractNotDatabase();
       setShouldRefresh(false);
     }
   }, [shouldRefresh]);
@@ -108,7 +108,7 @@ export default function TableInDatabaseNotExtract() {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {dataInDatabaseNotExtract
+            {dataInExtractNotDatabase
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -132,7 +132,7 @@ export default function TableInDatabaseNotExtract() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={dataInDatabaseNotExtract.length}
+        count={dataInExtractNotDatabase.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

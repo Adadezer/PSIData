@@ -10,19 +10,19 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import IDataContext from '../context/IDataContext';
+import IDataContext from '../../context/IDataContext';
 
-export default function TableInExtractNotDatabase() {
+export default function TableHaveInTwoTables() {
   const {
-    nameColumnsInExtractNotDatabase,
-    setNameColumnsInExtractNotDatabase,
-    dataInExtractNotDatabase,
-    setDataInExtractNotDatabase,
+    nameColumnsHaveInTwoTables,
+    setNameColumnsHaveInTwoTables,
+    dataHaveInTwoTables,
+    setDataHaveInTwoTables,
     shouldRefresh,
     setShouldRefresh,
   } = useContext(IDataContext);
 
-  const coluna = nameColumnsInExtractNotDatabase.map((name) => (
+  const coluna = nameColumnsHaveInTwoTables.map((name) => (
     {
       id: name.COLUMN_NAME,
       label: name.COLUMN_NAME,
@@ -32,19 +32,19 @@ export default function TableInExtractNotDatabase() {
     }
   ));
 
-  const getColumnsInExtractNotDatabase = async () => {
+  const getColumnsHaveInTwoTables = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/columnsInExtractNotDatabase');
-      setNameColumnsInExtractNotDatabase(result.data);
+      const result = await axios.get('http://localhost:3001/columnsHaveInTwoTables');
+      setNameColumnsHaveInTwoTables(result.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const getInExtractNotDatabase = async () => {
+  const getHaveInTwoTables = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/inExtractNotDatabase');
-      setDataInExtractNotDatabase(result.data);
+      const result = await axios.get('http://localhost:3001/haveInTwoTables');
+      setDataHaveInTwoTables(result.data);
     } catch (error) {
       console.error(error);
     }
@@ -52,8 +52,8 @@ export default function TableInExtractNotDatabase() {
 
   useEffect(() => {
     if (shouldRefresh) {
-      getColumnsInExtractNotDatabase();
-      getInExtractNotDatabase();
+      getColumnsHaveInTwoTables();
+      getHaveInTwoTables();
       setShouldRefresh(false);
     }
   }, [shouldRefresh]);
@@ -108,7 +108,7 @@ export default function TableInExtractNotDatabase() {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {dataInExtractNotDatabase
+            {dataHaveInTwoTables
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -132,7 +132,7 @@ export default function TableInExtractNotDatabase() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={dataInExtractNotDatabase.length}
+        count={dataHaveInTwoTables.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

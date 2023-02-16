@@ -1,27 +1,12 @@
 import React from 'react';
-import TableInDatabaseNotExtract from '../components/TableInDatabaseNotExtract';
-import TableInExtractNotDatabase from '../components/TableInExtractNotDatabase';
-import TableHaveInTwoTables from '../components/TableHaveInTwoTables';
-import ButtonSend from '../components/ButtonUpload';
+import ButtonContaspagarDebits from '../components/contasPagarDebits/ButtonContaspagarDebit';
 import '../App.css';
 
 function Home() {
   return (
     <>
-      <h1>Débitos Mês: Dezembro</h1>
-
-      <h3>Envie o extrato (.csv) válido para a comparação</h3>
-
-      <ButtonSend />
-
-      <h2>Registros existentes no banco, mas não no extrato</h2>
-      <TableInDatabaseNotExtract />
-
-      <h2>Registros existentes no extrato, mas não no banco</h2>
-      <TableInExtractNotDatabase />
-
-      <h2>Registros existentes em ambos</h2>
-      <TableHaveInTwoTables />
+      <h2>Escolha o que deseja visualizar</h2>
+      <ButtonContaspagarDebits />
     </>
   );
 }
