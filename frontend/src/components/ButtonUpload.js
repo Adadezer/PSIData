@@ -4,7 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import IDataContext from '../context/IDataContext';
 import '../App.css';
 
-function BotaoEnviar() {
+function ButtonUpload() {
   const [file, setFile] = useState();
   const { setShouldRefresh } = useContext(IDataContext);
   const [loading, setLoading] = useState(false);
@@ -46,4 +46,4 @@ function BotaoEnviar() {
   );
 }
 
-export default BotaoEnviar;
+export default ButtonUpload;

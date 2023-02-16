@@ -12,12 +12,17 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IDataContext from '../context/IDataContext';
 
-export default function TabelaSemLoteContasPagar() {
-  const { nameColumnsSemLoteContasPagar, setNameColumnsSemLoteContasPagar } = useContext(IDataContext);
+export default function TableInExtractNotDatabase() {
+  const {
+    nameColumnsInExtractNotDatabase,
+    setNameColumnsInExtractNotDatabase,
+    dataInExtractNotDatabase,
+    setDataInExtractNotDatabase,
+    shouldRefresh,
+    setShouldRefresh,
+  } = useContext(IDataContext);
 
-  const { dataSemLoteContasPagar, setDataSemLoteContasPagar } = useContext(IDataContext);
-
-  const coluna = nameColumnsSemLoteContasPagar.map((name) => (
+  const coluna = nameColumnsInExtractNotDatabase.map((name) => (
     {
       id: name.COLUMN_NAME,
       label: name.COLUMN_NAME,
@@ -27,28 +32,31 @@ export default function TabelaSemLoteContasPagar() {
     }
   ));
 
-  const getColumnsSemLoteContasPagar = async () => {
+  const getColumnsInExtractNotDatabase = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/columnsSemLoteContasPagar');
-      setNameColumnsSemLoteContasPagar(result.data);
+      const result = await axios.get('http://localhost:3001/columnsInExtractNotDatabase');
+      setNameColumnsInExtractNotDatabase(result.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const getSemLoteContasPagar = async () => {
+  const getInExtractNotDatabase = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/semLoteContasPagar');
-      setDataSemLoteContasPagar(result.data);
+      const result = await axios.get('http://localhost:3001/inExtractNotDatabase');
+      setDataInExtractNotDatabase(result.data);
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   useEffect(() => {
-    getColumnsSemLoteContasPagar();
-    getSemLoteContasPagar();
-  }, []);
+    if (shouldRefresh) {
+      getColumnsInExtractNotDatabase();
+      getInExtractNotDatabase();
+      setShouldRefresh(false);
+    }
+  }, [shouldRefresh]);
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -100,7 +108,7 @@ export default function TabelaSemLoteContasPagar() {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {dataSemLoteContasPagar
+            {dataInExtractNotDatabase
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -124,7 +132,7 @@ export default function TabelaSemLoteContasPagar() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={dataSemLoteContasPagar.length}
+        count={dataInExtractNotDatabase.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
