@@ -3,11 +3,11 @@ const multer = require('multer');
 
 const multerConfig = multer();
 const InDatabaseNotExtractController = require('../controllers/inDatabaseNotExtractController');
-const SemLoteContasPagarController = require('../controllers/semLoteContasPagarController');
+const InExtractNotDatabaseController = require('../controllers/inExtractNotDatabaseController');
 const UploadExtratoContoller = require('../controllers/uploadExtratoController');
 
 const inDatabaseNotExtractController = new InDatabaseNotExtractController();
-const semLoteContasPagarController = new SemLoteContasPagarController();
+const inExtractNotDatabaseController = new InExtractNotDatabaseController();
 const uploadExtratoController = new UploadExtratoContoller();
 
 Router.get(
@@ -21,13 +21,13 @@ Router.get(
 );
 
 Router.get(
-  '/semLoteContasPagar',
-  (_req, res) => semLoteContasPagarController.getAllSemLoteContasPagar(_req, res),
+  '/inExtractNotDatabase',
+  (_req, res) => inExtractNotDatabaseController.getAllEntry(_req, res),
 );
 
 Router.get(
-  '/columnsSemLoteContasPagar',
-  (_req, res) => semLoteContasPagarController.getAllColumnsSemLoteContasPagar(_req, res),
+  '/columnsInExtractNotDatabase',
+  (_req, res) => inExtractNotDatabaseController.getAllColumnsEntry(_req, res),
 );
 
 Router.post(
