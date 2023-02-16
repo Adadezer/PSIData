@@ -6,7 +6,7 @@ SELECT
   cod_banco AS 'codigo_do_banco',
   sum(vlr_pgto_cop) AS 'valor'
 FROM contaspagar
-  WHERE dt_pgto_cop BETWEEN '2022-12-01 00:00:00' AND '2023-01-30 00:00:00'
+  WHERE dt_pgto_cop BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 00:00:00' AND IFNULL( lote, '') != ''
   GROUP BY dt_pgto_cop, lote, cod_banco;
 
 -- CreateTable
@@ -17,4 +17,4 @@ SELECT
   cod_banco AS 'codigo_do_banco',
   vlr_pgto_cop AS 'valor'
 FROM contaspagar
-  WHERE dt_pgto_cop BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 00:00:00';
+  WHERE dt_pgto_cop BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 00:00:00' AND IFNULL( lote, '') = '';

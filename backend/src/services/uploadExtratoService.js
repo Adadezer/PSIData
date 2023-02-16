@@ -19,16 +19,18 @@ const uploadExtratoService = async (buffer) => {
     const extratoCharacter = line.replace(/["]/g, '');
     const extratoLineSeparator = extratoCharacter.split(',');
 
-    registrosExtrato.push({
-      data: extratoLineSeparator[0],
-      descricao: extratoLineSeparator[1],
-      identificacao: extratoLineSeparator[2],
-      check: extratoLineSeparator[3],
-      tipo: extratoLineSeparator[4],
-      valor: extratoLineSeparator[4] === 'DEBIT'
-        ? parseFloat(`${extratoLineSeparator[5] * -1}`)
-        : parseFloat(`${extratoLineSeparator[5]}`),
-    });
+    if (extratoLineSeparator[4] === 'DEBIT') {
+      registrosExtrato.push({
+        data: extratoLineSeparator[0],
+        descricao: extratoLineSeparator[1],
+        identificacao: extratoLineSeparator[2],
+        check: extratoLineSeparator[3],
+        tipo: extratoLineSeparator[4],
+        valor: extratoLineSeparator[4] === 'DEBIT'
+          ? parseFloat(`${extratoLineSeparator[5] * -1}`)
+          : parseFloat(`${extratoLineSeparator[5]}`),
+      });
+    }
   }
 
   // eslint-disable-next-line no-restricted-syntax
