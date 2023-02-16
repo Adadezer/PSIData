@@ -121,3 +121,11 @@ model semLoteContasPagar {
   codigo_do_banco String?   @db.Char(3)
   valor           Decimal   @default(0.00) @db.Decimal(10, 2)
 }
+
+model lancamentosContasPagar {
+  id              Int       @id @default(autoincrement())
+  data            DateTime? @db.DateTime(0)
+  lote            String?   @db.VarChar(20)
+  codigo_do_banco String?   @db.Char(3)
+  valor           Decimal?  @db.Decimal(32, 2)
+}
