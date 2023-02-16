@@ -1,6 +1,7 @@
 import React from 'react';
 import TableInDatabaseNotExtract from '../components/TableInDatabaseNotExtract';
 import TableInExtractNotDatabase from '../components/TableInExtractNotDatabase';
+import TableHaveInTwoTables from '../components/TableHaveInTwoTables';
 import ButtonSend from '../components/ButtonUpload';
 import '../App.css';
 
@@ -18,6 +19,9 @@ function Home() {
 
       <h2>Registros existentes no extrato, mas não no banco</h2>
       <TableInExtractNotDatabase />
+
+      <h2>Registros existentes em ambos</h2>
+      <TableHaveInTwoTables />
     </>
   );
 }
