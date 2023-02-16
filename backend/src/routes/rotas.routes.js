@@ -4,10 +4,12 @@ const multer = require('multer');
 const multerConfig = multer();
 const InDatabaseNotExtractController = require('../controllers/inDatabaseNotExtractController');
 const InExtractNotDatabaseController = require('../controllers/inExtractNotDatabaseController');
+const HaveInTwoTablesController = require('../controllers/haveInTwoTablesController');
 const UploadExtratoContoller = require('../controllers/uploadExtratoController');
 
 const inDatabaseNotExtractController = new InDatabaseNotExtractController();
 const inExtractNotDatabaseController = new InExtractNotDatabaseController();
+const haveInTwoTablesController = new HaveInTwoTablesController();
 const uploadExtratoController = new UploadExtratoContoller();
 
 Router.get(
@@ -28,6 +30,16 @@ Router.get(
 Router.get(
   '/columnsInExtractNotDatabase',
   (_req, res) => inExtractNotDatabaseController.getAllColumnsEntry(_req, res),
+);
+
+Router.get(
+  '/haveInTwoTables',
+  (_req, res) => haveInTwoTablesController.getAllEntry(_req, res),
+);
+
+Router.get(
+  '/columnsHaveInTwoTables',
+  (_req, res) => haveInTwoTablesController.getAllColumnsEntry(_req, res),
 );
 
 Router.post(
