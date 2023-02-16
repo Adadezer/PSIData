@@ -2,15 +2,27 @@ const Router = require('express').Router();
 const multer = require('multer');
 
 const multerConfig = multer();
+const PostsContasPagarController = require('../controllers/postsContasPagarController');
 const InDatabaseNotExtractController = require('../controllers/inDatabaseNotExtractController');
 const InExtractNotDatabaseController = require('../controllers/inExtractNotDatabaseController');
 const HaveInTwoTablesController = require('../controllers/haveInTwoTablesController');
 const UploadExtratoContoller = require('../controllers/uploadExtratoController');
 
+const postsContasPagarController = new PostsContasPagarController();
 const inDatabaseNotExtractController = new InDatabaseNotExtractController();
 const inExtractNotDatabaseController = new InExtractNotDatabaseController();
 const haveInTwoTablesController = new HaveInTwoTablesController();
 const uploadExtratoController = new UploadExtratoContoller();
+
+Router.post(
+  '/lancamentosContasPagar',
+  (req, res) => postsContasPagarController.postLancamentosContasPagar(req, res),
+);
+
+Router.get(
+  '/columnsLancamentosContasPagar',
+  (_req, res) => postsContasPagarController.getAllColumnsLancamentosContasPagar(_req, res),
+);
 
 Router.get(
   '/inDatabaseNotExtract',
