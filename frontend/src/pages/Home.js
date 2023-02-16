@@ -1,6 +1,5 @@
 import React from 'react';
-import ButtonContaspagarDebits from '../components/ButtonContaspagarDebit';
-
+import ButtonContaspagarDebits from '../components/contasPagarDebits/ButtonContaspagarDebit';
 import '../App.css';
 
 function Home() {

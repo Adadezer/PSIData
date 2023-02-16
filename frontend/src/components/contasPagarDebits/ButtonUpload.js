@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import Axios from 'axios';
 import LoadingButton from '@mui/lab/LoadingButton';
-import IDataContext from '../context/IDataContext';
-import '../App.css';
+import IDataContext from '../../context/IDataContext';
+import '../../App.css';
 
 function ButtonUpload() {
   const [file, setFile] = useState();

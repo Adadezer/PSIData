@@ -1,8 +1,8 @@
 import React from 'react';
-import TableInDatabaseNotExtract from '../components/TableInDatabaseNotExtract';
-import TableInExtractNotDatabase from '../components/TableInExtractNotDatabase';
-import TableHaveInTwoTables from '../components/TableHaveInTwoTables';
-import ButtonSend from '../components/ButtonUpload';
+import TableInDatabaseNotExtract from '../components/contasPagarDebits/TableInDatabaseNotExtract';
+import TableInExtractNotDatabase from '../components/contasPagarDebits/TableInExtractNotDatabase';
+import TableHaveInTwoTables from '../components/contasPagarDebits/TableHaveInTwoTables';
+import ButtonUpload from '../components/contasPagarDebits/ButtonUpload';
 import '../App.css';
 
 function Home() {
@@ -12,7 +12,7 @@ function Home() {
 
       <h3>Envie o extrato (.csv) válido para a comparação</h3>
 
-      <ButtonSend />
+      <ButtonUpload />
 
       <h2>Registros existentes no banco, mas não no extrato</h2>
       <TableInDatabaseNotExtract />
