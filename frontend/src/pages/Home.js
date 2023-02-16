@@ -1,5 +1,5 @@
 import React from 'react';
-import TabelaLotesContasPagar from '../components/TabelaLotesContasPagar';
+import TableInDatabaseNotExtract from '../components/TableInDatabaseNotExtract';
 import TabelaSemLoteContasPagar from '../components/TabelaSemLoteContasPagar';
 import ButtonSend from '../components/BotaoEnviar';
 import '../App.css';
@@ -13,10 +13,10 @@ function Home() {
 
       <ButtonSend />
 
-      <h2>Registros com lotes</h2>
-      <TabelaLotesContasPagar />
+      <h2>Registros existentes no banco, mas não no extrato</h2>
+      <TableInDatabaseNotExtract />
 
-      <h2>Registros sem Lote</h2>
+      <h2>Registros existentes no extrato, mas não no banco</h2>
       <TabelaSemLoteContasPagar />
     </>
   );
