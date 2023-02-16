@@ -2,22 +2,22 @@ const Router = require('express').Router();
 const multer = require('multer');
 
 const multerConfig = multer();
-const LotesContasPagarController = require('../controllers/loteContasPagarController');
+const InDatabaseNotExtractController = require('../controllers/inDatabaseNotExtractController');
 const SemLoteContasPagarController = require('../controllers/semLoteContasPagarController');
 const UploadExtratoContoller = require('../controllers/uploadExtratoController');
 
-const lotesContasPagarController = new LotesContasPagarController();
+const inDatabaseNotExtractController = new InDatabaseNotExtractController();
 const semLoteContasPagarController = new SemLoteContasPagarController();
 const uploadExtratoController = new UploadExtratoContoller();
 
 Router.get(
-  '/lotesContasPagar',
-  (_req, res) => lotesContasPagarController.getAllLotesContasPagar(_req, res),
+  '/inDatabaseNotExtract',
+  (_req, res) => inDatabaseNotExtractController.getAllEntry(_req, res),
 );
 
 Router.get(
-  '/columnsLotesContasPagar',
-  (_req, res) => lotesContasPagarController.getAllColumnsLotesContasPagar(_req, res),
+  '/columnsInDatabaseNotExtract',
+  (_req, res) => inDatabaseNotExtractController.getAllColumnsEntry(_req, res),
 );
 
 Router.get(

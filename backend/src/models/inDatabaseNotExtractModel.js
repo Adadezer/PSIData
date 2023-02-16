@@ -1,30 +1,34 @@
 const connection = require('./connection');
 
-class LotesContasPagarModel {
+class InDatabaseNotExtractModel {
   constructor() {
     this.connection = connection;
   }
 
-  async getAllLotesContasPagar() {
+  async getAllEntry() {
     const result = await this.connection.execute(`
-      SELECT lotesContasPagar.data, lotesContasPagar.lote, lotesContasPagar.codigo_do_banco, lotesContasPagar.valor
-      FROM psIdata.lotesContasPagar
+      SELECT
+        lancamentosContasPagar.data,
+        lancamentosContasPagar.lote,
+        lancamentosContasPagar.codigo_do_banco,
+        lancamentosContasPagar.valor
+      FROM psIdata.lancamentosContasPagar
       LEFT JOIN psIdata.Extrato
-      ON lotesContasPagar.valor = Extrato.valor
+      ON lancamentosContasPagar.valor = Extrato.valor
       WHERE Extrato.valor IS NULL;
     `);
     const [rows] = result;
     return rows;
   }
 
-  async getAllColumnsLotesContasPagar() {
+  async getAllColumnsEntry() {
     const result = await this.connection.execute(`
       SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
-      WHERE TABLE_NAME = 'lotesContasPagar'
+      WHERE TABLE_NAME = 'lancamentosContasPagar'
     `);
     const [columnName] = result;
     return columnName;
   }
 }
 
-module.exports = LotesContasPagarModel;
+module.exports = InDatabaseNotExtractModel;
