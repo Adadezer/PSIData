@@ -2,24 +2,24 @@ import { useState, useMemo } from 'react';
 import IDataContext from './IDataContext';
 
 function IDataProvider({ children }) {
-  const [nameColumnsLotesContasPagar, setNameColumnsLotesContasPagar] = useState([]);
-  const [dataLotesContasPagar, setDataLotesContasPagar] = useState([]);
-  const [nameColumnsSemLoteContasPagar, setNameColumnsSemLoteContasPagar] = useState([]);
-  const [dataSemLoteContasPagar, setDataSemLoteContasPagar] = useState([]);
+  const [nameColumnsInDatabaseNotExtract, setNameColumnsInDatabaseNotExtract] = useState([]);
+  const [dataInDatabaseNotExtract, setDataInDatabaseNotExtract] = useState([]);
+  const [nameColumnsInExtractNotDatabase, setNameColumnsInExtractNotDatabase] = useState([]);
+  const [dataInExtractNotDatabase, setDataInExtractNotDatabase] = useState([]);
   const [shouldRefresh, setShouldRefresh] = useState(false);
 
   const myContext = useMemo(() => ({
-    nameColumnsLotesContasPagar,
-    setNameColumnsLotesContasPagar,
-    dataLotesContasPagar,
-    setDataLotesContasPagar,
-    nameColumnsSemLoteContasPagar,
-    setNameColumnsSemLoteContasPagar,
-    dataSemLoteContasPagar,
-    setDataSemLoteContasPagar,
+    nameColumnsInDatabaseNotExtract,
+    setNameColumnsInDatabaseNotExtract,
+    dataInDatabaseNotExtract,
+    setDataInDatabaseNotExtract,
+    nameColumnsInExtractNotDatabase,
+    setNameColumnsInExtractNotDatabase,
+    dataInExtractNotDatabase,
+    setDataInExtractNotDatabase,
     shouldRefresh,
     setShouldRefresh,
-  }), [nameColumnsLotesContasPagar, dataLotesContasPagar, nameColumnsSemLoteContasPagar, dataSemLoteContasPagar, shouldRefresh]);
+  }), [nameColumnsInDatabaseNotExtract, dataInDatabaseNotExtract, nameColumnsInExtractNotDatabase, dataInExtractNotDatabase, shouldRefresh]);
 
   return (
     <IDataContext.Provider value={myContext}>

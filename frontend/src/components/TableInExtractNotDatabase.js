@@ -12,17 +12,17 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IDataContext from '../context/IDataContext';
 
-export default function TabelaLotesContasPagar() {
+export default function TableInExtractNotDatabase() {
   const {
-    nameColumnsLotesContasPagar,
-    setNameColumnsLotesContasPagar,
-    dataLotesContasPagar,
-    setDataLotesContasPagar,
+    nameColumnsInExtractNotDatabase,
+    setNameColumnsInExtractNotDatabase,
+    dataInExtractNotDatabase,
+    setDataInExtractNotDatabase,
     shouldRefresh,
     setShouldRefresh,
   } = useContext(IDataContext);
 
-  const coluna = nameColumnsLotesContasPagar.map((name) => (
+  const coluna = nameColumnsInExtractNotDatabase.map((name) => (
     {
       id: name.COLUMN_NAME,
       label: name.COLUMN_NAME,
@@ -32,33 +32,28 @@ export default function TabelaLotesContasPagar() {
     }
   ));
 
-  const getColumnsLotesContasPagar = async () => {
+  const getColumnsInExtractNotDatabase = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/columnsLotesContasPagar');
-      setNameColumnsLotesContasPagar(result.data);
+      const result = await axios.get('http://localhost:3001/columnsInExtractNotDatabase');
+      setNameColumnsInExtractNotDatabase(result.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const getContasPagar = async () => {
+  const getInExtractNotDatabase = async () => {
     try {
-      const result = await axios.get('http://localhost:3001/lotesContasPagar');
-      setDataLotesContasPagar(result.data);
+      const result = await axios.get('http://localhost:3001/inExtractNotDatabase');
+      setDataInExtractNotDatabase(result.data);
     } catch (error) {
       console.error(error);
     }
   };
-  
-  useEffect(() => {
-    getColumnsLotesContasPagar();
-    getContasPagar();
-  }, []);
 
   useEffect(() => {
     if (shouldRefresh) {
-      getColumnsLotesContasPagar();
-      getContasPagar();
+      getColumnsInExtractNotDatabase();
+      getInExtractNotDatabase();
       setShouldRefresh(false);
     }
   }, [shouldRefresh]);
@@ -113,7 +108,7 @@ export default function TabelaLotesContasPagar() {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {dataLotesContasPagar
+            {dataInExtractNotDatabase
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -137,7 +132,7 @@ export default function TabelaLotesContasPagar() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={dataLotesContasPagar.length}
+        count={dataInExtractNotDatabase.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
