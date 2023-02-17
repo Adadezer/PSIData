@@ -22,6 +22,7 @@
     "prisma": "^4.10.0"
   },
   "dependencies": {
+    "@mui/x-date-pickers": "^5.0.19",
     "@prisma/client": "^4.10.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
