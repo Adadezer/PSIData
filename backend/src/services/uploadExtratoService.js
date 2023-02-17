@@ -1,5 +1,6 @@
 const { Readable } = require('stream');
 const readline = require('readline');
+const connection = require('../models/connection');
 
 const client = require('../database/client');
 
@@ -32,6 +33,11 @@ const uploadExtratoService = async (buffer) => {
       });
     }
   }
+
+  await connection.execute(`
+    DELETE FROM psIdata.Extrato
+    WHERE id >= 0; 
+  `);
 
   // eslint-disable-next-line no-restricted-syntax
   for await (const {
