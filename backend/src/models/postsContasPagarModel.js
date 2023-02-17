@@ -7,7 +7,7 @@ class PostsContasPagarModel {
 
   async postLancamentosContasPagar(dataInicio, dataFim, codBanco) {
     const query = `
-      CREATE TABLE psIdata.lancamentosContasPagar
+      CREATE TABLE IF NOT EXISTS psIdata.lancamentosContasPagar
       SELECT
         contaspagar.dt_pgto_cop AS 'data',
         contaspagar.lote AS 'lote',
