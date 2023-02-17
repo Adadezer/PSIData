@@ -18,16 +18,15 @@ Para rodar a aplicação é necessário ter no computador o NodeJs, o Node Packa
  1- Abra o terminal, clone o projeto e entre em sua pasta:
 
  - `git clone git@github.com:Adadezer/PSIData.git` ou  `https://github.com/Adadezer/PSIData.git`
- 
+depois
 - `cd PSIData`
 
-2- Instale as dependências:
-
+2- Entre na pasta backend, e instale as dependências:
+-  `cd backend`
+depois
  - `npm install`
  
-3- Entre na pasta backend e configure a variável de ambiente:
--  `cd backend`
-
+3-  Configure a variável de ambiente:
 Para fazer a conexão com o banco de dados é necessário criar um arquivo **.env** na raiz da pasta backend, e nesse arquivo vão as informações de usuários e senha do MySQL, segue exemplo do conteúdo do arquivo.
 ```
 MYSQL_HOST=hostMysql
@@ -37,8 +36,9 @@ MYSQL_PASSWORD=senhaMysql
 DATABASE_URL="mysql://nome_do_usuario:senha_do_banco_de_dados@hostmysql:3306/psIdata?schema=public"
 ```
 Na pasta backend tem um arquivo chamado **.env.example** que poderá ser usado como referência.
+Esse arquivo é um arquivo oculto, mas se o código for aberto pelo **vscode** será possível vê-lo lá dentro.
 
-4- Após configurar a variável de ambiente, suba o banco de dados
+4- Após configurar a variável de ambiente, suba o banco de dados, digite no terminal:
  - `npx prisma migrate dev`
  
  Obs: O processo para subir o banco e criar as tabelas é consideravelmente demorado, pois existem tabelas com mais de 3000 registros, minha máquina não é potente mas demorou cerca de 30 min. 
@@ -56,8 +56,9 @@ Aparecerá na tela do terminal uma mensagem como: `Rodando na porta 3001` isso i
 
  - `cd frontend`
  
- 7- Na pasta do frontend rode a aplicação:
- 
+ 7- Na pasta do frontend instale as dependências e rode a aplicação:
+  - `npm install`
+ depois
  - `npm start`
 
 O navegador irá abrir uma aba com a aplicação funcinando.
