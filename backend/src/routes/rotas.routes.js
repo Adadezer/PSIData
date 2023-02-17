@@ -7,12 +7,14 @@ const InDatabaseNotExtractController = require('../controllers/inDatabaseNotExtr
 const InExtractNotDatabaseController = require('../controllers/inExtractNotDatabaseController');
 const HaveInTwoTablesController = require('../controllers/haveInTwoTablesController');
 const UploadExtratoContoller = require('../controllers/uploadExtratoController');
+const DeleteLancamentosController = require('../controllers/deleteLancamentosController');
 
 const postsContasPagarController = new PostsContasPagarController();
 const inDatabaseNotExtractController = new InDatabaseNotExtractController();
 const inExtractNotDatabaseController = new InExtractNotDatabaseController();
 const haveInTwoTablesController = new HaveInTwoTablesController();
 const uploadExtratoController = new UploadExtratoContoller();
+const deleteLancamentosController = new DeleteLancamentosController();
 
 Router.post(
   '/lancamentosContasPagar',
@@ -58,6 +60,11 @@ Router.post(
   '/uploadExtrato',
   multerConfig.single('file'),
   (req, res) => uploadExtratoController.uploadExtrato(req, res),
+);
+
+Router.delete(
+  '/deleteLancamentos',
+  (_req, res) => deleteLancamentosController.dropLancamentos(_req, res),
 );
 
 module.exports = Router;
