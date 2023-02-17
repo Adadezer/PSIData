@@ -5,7 +5,6 @@ class PostsContasPagarController {
 
   async postLancamentosContasPagar(req, res) {
     const { dataInicio, dataFim, codBanco } = req.body;
-    // console.log('reqBody >>>>', req.body);
     const postEntrys = await
     this.PostsContasPagarService.postLancamentosContasPagar(dataInicio, dataFim, codBanco);
 

@@ -1,15 +1,12 @@
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import {
-  Button,
-  Grid,
-  TextField,
-} from '@mui/material';
+import { Button, Grid, TextField } from '@mui/material';
 import { useContext } from 'react';
+import axios from 'axios';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import axios from 'axios';
-import FilterContext from '../../context/FilterContext';
 import formatDate from '../../helpers/formatDate';
+import FilterContext from '../../context/FilterContext';
+import IDataContext from '../../context/IDataContext';
 import 'dayjs/locale/pt-br';
 
 function Filter() {
@@ -21,6 +18,8 @@ function Filter() {
     bankCode,
     setBankCode,
   } = useContext(FilterContext);
+
+  const { setShouldRefresh } = useContext(IDataContext);
 
   const handleStartDateChange = (date) => {
     setStartDate(date);
@@ -35,7 +34,6 @@ function Filter() {
   };
 
   const handleApply = async () => {
-    // onApply(startDate, endDate, bankCode);
     const data = {
       dataInicio: formatDate(startDate.$d),
       dataFim: formatDate(endDate.$d),
@@ -43,9 +41,15 @@ function Filter() {
     };
 
     try {
+      await axios.delete('http://localhost:3001/deleteLancamentos')
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+
       await axios.post('http://localhost:3001/lancamentosContasPagar', data)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
+      
+      setShouldRefresh(true);
     } catch (error) {
       console.error(error);
     }
@@ -76,7 +80,6 @@ function Filter() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            required
             id="outlined-basic"
             label="Código do banco"
             variant="outlined"
@@ -85,7 +88,7 @@ function Filter() {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button variant="contained" color="primary" onClick={handleApply}>
+          <Button variant="outlined" color="primary" onClick={handleApply}>
             Aplicar filtro
           </Button>
         </Grid>
